@@ -35,7 +35,7 @@ class Student:
         if num_courses > 0:
             self.average_grade = total_grade / num_courses
         else:
-            return 'Ошибка'
+            return 0
 
     def __str__(self):
         return (f'Имя: {self.name}\nФамилия: {self.surname}\n'
@@ -77,7 +77,7 @@ class Lecturer(Mentor):
         if num_courses > 0:
             self.average_grade = total_grade / num_courses
         else:
-            return 'Ошибка'
+            return 0
 
     def __str__(self):
         return (f'Имя: {self.name}\nФамилия: {self.surname}\n'
@@ -163,9 +163,9 @@ def average_tasks(students, course):
             total_grade += sum(student.grades[course])
             num_students += 1
     if num_students > 0:
-        return f'{total_grade / num_students:.1f}'
+        return round(total_grade / num_students, 1)
     else:
-        return 'Ошибка'
+        return 0
 
 def average_lectures(lecturers, course):
     total_grade = 0
@@ -175,9 +175,9 @@ def average_lectures(lecturers, course):
             total_grade += sum(lecturer.grades[course])
             num_lecturers += 1
     if num_lecturers > 0:
-        return f'{total_grade / num_lecturers:.1f}'
+        return round(total_grade / num_lecturers, 1)
     else:
-        return 'Ошибка'
+        return 0
 
 print(student1)
 print(student2)

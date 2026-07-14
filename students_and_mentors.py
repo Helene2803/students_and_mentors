@@ -32,7 +32,10 @@ class Student:
             for grades in self.grades.values():
                 total_grade += sum(grades)
                 num_courses += len(grades)
-        self.average_grade = total_grade / num_courses
+        if num_courses > 0:
+            self.average_grade = total_grade / num_courses
+        else:
+            return 'Ошибка'
 
     def __str__(self):
         return (f'Имя: {self.name}\nФамилия: {self.surname}\n'
@@ -71,7 +74,10 @@ class Lecturer(Mentor):
             for grades in self.grades.values():
                 total_grade += sum(grades)
                 num_courses += len(grades)
-        self.average_grade = total_grade / num_courses
+        if num_courses > 0:
+            self.average_grade = total_grade / num_courses
+        else:
+            return 'Ошибка'
 
     def __str__(self):
         return (f'Имя: {self.name}\nФамилия: {self.surname}\n'
@@ -134,6 +140,11 @@ reviewer1.rate_hw(student2, 'C++', 8)
 reviewer2.rate_hw(student1, 'Java', 7)
 reviewer2.rate_hw(student2, 'C++', 10)
 
+print(student1.rate_lecture(lecturer1, 'C#', 10))
+print(student2.rate_lecture(lecturer2, 'C#', 7))
+print(student2.rate_lecture(reviewer1, 'Python', 9))
+print()
+
 student1.calc_average_grade()
 student2.calc_average_grade()
 lecturer1.calc_average_grade()
@@ -150,8 +161,10 @@ def average_tasks(students, course):
         if course in student.grades:
             total_grade += sum(student.grades[course])
             num_students += 1
-    print(f'Средняя оценка за домашние задания по всем студентам в рамках курса {course}:',
-          f'{total_grade / num_students:.1f}')
+    if num_students > 0:
+        return f'{total_grade / num_students:.1f}'
+    else:
+        return 'Ошибка'
 
 def average_lectures(lecturers, course):
     total_grade = 0
@@ -160,8 +173,10 @@ def average_lectures(lecturers, course):
         if course in lecturer.grades:
             total_grade += sum(lecturer.grades[course])
             num_lecturers += 1
-    print(f'Средняя оценка за лекции всех лекторов в рамках курса {course}:',
-          f'{total_grade / num_lecturers:.1f}')
+    if num_lecturers > 0:
+        return f'{total_grade / num_lecturers:.1f}'
+    else:
+        return 'Ошибка'
 
 print(student1)
 print(student2)
@@ -170,8 +185,8 @@ print(lecturer2)
 print(reviewer1)
 print(reviewer2)
 
-average_tasks(students_list, 'C++')
-average_lectures(lecturers_list, 'Java')
+print(average_tasks(students_list, 'C++'))
+print(average_lectures(lecturers_list, 'Java'))
 print()
 print(student1 == student2)
 print(student1 > student2)
@@ -179,7 +194,3 @@ print(student1 < student2)
 print(lecturer1 == lecturer2)
 print(lecturer1 > lecturer2)
 print(lecturer1 < lecturer2)
-
-
-
-

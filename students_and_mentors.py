@@ -142,7 +142,8 @@ reviewer2.rate_hw(student2, 'C++', 10)
 
 print(student1.rate_lecture(lecturer1, 'C#', 10))
 print(student2.rate_lecture(lecturer2, 'C#', 7))
-print(student2.rate_lecture(reviewer1, 'Python', 9))
+print(reviewer2.rate_hw(lecturer1, 'Python', 9))
+print(reviewer1.rate_hw(student2, 'Java', 8))
 print()
 
 student1.calc_average_grade()
